@@ -91,3 +91,14 @@ C:\Users\joshu\Desktop\WristMenu\obj\Debug\WristMenu.csproj.CopyComplete
 C:\Users\joshu\Desktop\WristMenu\obj\Debug\WristMenu.dll
 C:\Users\joshu\Desktop\WristMenu\obj\Debug\WristMenu.pdb
 C:\Users\joshu\Desktop\WristMenu\obj\Debug\WristMenu.csprojAssemblyReference.cache
+C:\Users\joshu\Documents\Programming\MonkeModMenu\WristMenu\bin\Debug\WristMenu.dll
+C:\Users\joshu\Documents\Programming\MonkeModMenu\WristMenu\bin\Debug\WristMenu.pdb
+C:\Users\joshu\Documents\Programming\MonkeModMenu\WristMenu\bin\Debug\MeshBakerCore.dll
+C:\Users\joshu\Documents\Programming\MonkeModMenu\WristMenu\bin\Debug\Oculus.VR.dll
+C:\Users\joshu\Documents\Programming\MonkeModMenu\WristMenu\bin\Debug\Oculus.Platform.dll
+C:\Users\joshu\Documents\Programming\MonkeModMenu\WristMenu\bin\Debug\PlayFab.dll
+C:\Users\joshu\Documents\Programming\MonkeModMenu\WristMenu\obj\Debug\WristMenu.csprojAssemblyReference.cache
+C:\Users\joshu\Documents\Programming\MonkeModMenu\WristMenu\obj\Debug\WristMenu.csproj.CoreCompileInputs.cache
+C:\Users\joshu\Documents\Programming\MonkeModMenu\WristMenu\obj\Debug\WristMenu.csproj.CopyComplete
+C:\Users\joshu\Documents\Programming\MonkeModMenu\WristMenu\obj\Debug\WristMenu.dll
+C:\Users\joshu\Documents\Programming\MonkeModMenu\WristMenu\obj\Debug\WristMenu.pdb
