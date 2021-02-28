@@ -8,7 +8,7 @@ Simply download the dll [Click here to download](), then move "WristMenu.dll" in
 ### If you don't have BepInEx (This method involves installing BepInEx)
 Simply download the ZIP file [Click here to download](), then move the ZIP file into your game folder (can get to it by going to Steam, right-clicking on Gorilla Tag in your library, click properties, go to Local Files and click Browse), then right click the ZIP file and extract there - there should now be a folder called "BepInEx"
 
-![](https://media.giphy.com/media/SPeNY5n4RCGgRPWvRG/giphy.gif)
+![](eg.gif)
 
 ## To use
 Hold your left hand grip in order to trigger the menu
