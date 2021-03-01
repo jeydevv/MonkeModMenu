@@ -29,8 +29,8 @@ namespace WristMenu
     [HarmonyPatch("Update", MethodType.Normal)]
     class MenuPatch
     {
-        static string[] buttons = new string[] {"Toggle Super Monke V2", "Toggle Tag Gun", "Toggle Speed Boost", "Tag All"};
-        static bool[] buttonsActive = new bool[] {false, false, false, false};
+        static string[] buttons = new string[] {"Toggle Super Monke", "Toggle Tag Gun", "Toggle Speed Boost", "Tag All", "Turn Off Tag Freeze"};
+        static bool[] buttonsActive = new bool[] {false, false, false, false, false};
         static bool gripDown;
         static GameObject menu = null;
         static GameObject canvasObj = null;
@@ -40,10 +40,16 @@ namespace WristMenu
         static bool gravityToggled = false;
         static bool flying = false;
         static int btnCooldown = 0;
+        static float? maxJumpSpeed = null;
         static void Prefix(GorillaLocomotion.Player __instance)
         {
-            if (PhotonNetworkController.instance.isPrivate)
+            if (PhotonNetworkController.instance.isPrivate)//(PhotonNetworkController.instance.isPrivate)
             {
+                if (maxJumpSpeed == null)
+                {
+                    maxJumpSpeed = __instance.maxJumpSpeed;
+                }
+
                 List<InputDevice> list = new List<InputDevice>();
                 InputDevices.GetDevicesWithCharacteristics(UnityEngine.XR.InputDeviceCharacteristics.HeldInHand | UnityEngine.XR.InputDeviceCharacteristics.Left | UnityEngine.XR.InputDeviceCharacteristics.Controller, list);
                 list[0].TryGetFeatureValue(CommonUsages.gripButton, out gripDown);
@@ -176,7 +182,7 @@ namespace WristMenu
                 }
                 else
                 {
-                    __instance.maxJumpSpeed = 999f;
+                    __instance.maxJumpSpeed = (float)maxJumpSpeed;
                     __instance.jumpMultiplier = 1.1f;
                 }
 
@@ -200,6 +206,11 @@ namespace WristMenu
                         menu = null;
                         Draw();
                     }
+                }
+
+                if (buttonsActive[4])
+                {
+                    __instance.disableMovement = false;
                 }
 
                 if (btnCooldown > 0)
@@ -257,7 +268,7 @@ namespace WristMenu
             title.resizeTextMinSize = 0;
             RectTransform titleTransform = title.GetComponent<RectTransform>();
             titleTransform.localPosition = Vector3.zero;
-            titleTransform.sizeDelta = new Vector2(0.2f, 0.05f);
+            titleTransform.sizeDelta = new Vector2(0.2f, 0.03f);
             titleTransform.localPosition = new Vector3(0.064f, 0f, 0.111f - (offset / 2.55f));
             titleTransform.rotation = Quaternion.Euler(new Vector3(180f, 90f, 90f));
         }
@@ -319,26 +330,7 @@ namespace WristMenu
                     break;
                 }
             }
-
-            if (index != buttons.Length - 1)
-            {
-                if (buttonsActive[index])
-                {
-                    buttonsActive[index] = false;
-                }
-                else
-                {
-                    for (int i = 0; i < buttons.Length - 1; i++)
-                    {
-                        buttonsActive[i] = false;
-                    }
-                    buttonsActive[index] = true;
-                }
-            }
-            else
-            {
-                buttonsActive[buttons.Length - 1] = true;
-            }
+            buttonsActive[index] = !buttonsActive[index];
 
             GameObject.Destroy(menu);
             menu = null;
