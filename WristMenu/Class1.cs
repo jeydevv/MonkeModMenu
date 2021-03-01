@@ -15,7 +15,7 @@ using System.IO;
 
 namespace WristMenu
 {
-    [BepInPlugin("org.jeydevv.monkeytag.wristmenu", "Monke Wrist Menu!", "1.0.0.0")]
+    [BepInPlugin("org.jeydevv.monkeytag.wristmenu", "Monke Wrist Menu!", "1.2.0.0")]
     public class MyMenuPatcher : BaseUnityPlugin
     {
         public void Awake()
