@@ -3,14 +3,16 @@ A mod for the amazing game Gorilla Tag
 ### Please note: this mod will NOT work on public servers
 
 ## Whats new:
+- Bug fixes!
 - Turn Off Tag Freeze button
 - Can use more than 1 option at a time
+- Fail safe
 
 ## To install:
 ### If you have BepInEx
-Simply download the dll [Click here to download](https://github.com/jeydevv/MonkeModMenu/releases/download/1.2.0.0/WristMenu.dll), then move "WristMenu.dll" into your BepInEx/plugins folder in your game directory
+Simply download the dll [Click here to download](https://github.com/jeydevv/MonkeModMenu/releases/download/1.2.1/WristMenu.dll), then move "WristMenu.dll" into your BepInEx/plugins folder in your game directory
 ### If you don't have BepInEx (This method involves installing BepInEx)
-Simply download the ZIP file [Click here to download](https://github.com/jeydevv/MonkeModMenu/releases/download/1.2.0.0/Monke.Mod.Menu.zip), then move the ZIP file into your game folder (can get to it by going to Steam, right-clicking on Gorilla Tag in your library, click properties, go to Local Files and click Browse), then right click the ZIP file and extract there - there should now be a folder called "BepInEx"
+Simply download the ZIP file [Click here to download](https://github.com/jeydevv/MonkeModMenu/releases/download/1.2.1/MonkeModMenu121.zip), then move the ZIP file into your game folder (can get to it by going to Steam, right-clicking on Gorilla Tag in your library, click properties, go to Local Files and click Browse), then right click the ZIP file and extract there - there should now be a folder called "BepInEx"
 
 ![](eg.gif)
 ![](eg2.gif)
