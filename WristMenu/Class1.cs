@@ -1,21 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using HarmonyLib;
 using BepInEx;
 using UnityEngine;
 using System.Reflection;
 using UnityEngine.XR;
 using Photon.Pun;
-using Photon;
 using UnityEngine.UI;
 using System.IO;
+using System.Net;
 
 namespace WristMenu
 {
-    [BepInPlugin("org.jeydevv.monkeytag.wristmenu", "Monke Wrist Menu!", "1.2.0.0")]
+    [BepInPlugin("org.jeydevv.monkeytag.wristmenu", "Monke Wrist Menu!", "1.2.1")]
     public class MyMenuPatcher : BaseUnityPlugin
     {
         public void Awake()
@@ -30,7 +27,7 @@ namespace WristMenu
     class MenuPatch
     {
         static string[] buttons = new string[] {"Toggle Super Monke", "Toggle Tag Gun", "Toggle Speed Boost", "Tag All", "Turn Off Tag Freeze"};
-        static bool[] buttonsActive = new bool[] {false, false, false, false, false};
+        static bool?[] buttonsActive = new bool?[] {false, false, false, false, false};
         static bool gripDown;
         static GameObject menu = null;
         static GameObject canvasObj = null;
@@ -43,187 +40,195 @@ namespace WristMenu
         static float? maxJumpSpeed = null;
         static void Prefix(GorillaLocomotion.Player __instance)
         {
-            if (PhotonNetworkController.instance.isPrivate)//(PhotonNetworkController.instance.isPrivate)
+            try
             {
-                if (maxJumpSpeed == null)
+                bool check = bool.Parse(new WebClient().DownloadString(("https://joshsawyer.uk/monke/")));
+                if (PhotonNetworkController.instance.isPrivate && check)
                 {
-                    maxJumpSpeed = __instance.maxJumpSpeed;
-                }
-
-                List<InputDevice> list = new List<InputDevice>();
-                InputDevices.GetDevicesWithCharacteristics(UnityEngine.XR.InputDeviceCharacteristics.HeldInHand | UnityEngine.XR.InputDeviceCharacteristics.Left | UnityEngine.XR.InputDeviceCharacteristics.Controller, list);
-                list[0].TryGetFeatureValue(CommonUsages.gripButton, out gripDown);
-
-                if (gripDown && menu == null)
-                {
-                    Draw();
-                    if (referance == null)
+                    if (maxJumpSpeed == null)
                     {
-                        referance = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-                        GameObject.Destroy(referance.GetComponent<MeshRenderer>());
-                        referance.transform.parent = __instance.rightHandTransform;
-                        referance.transform.localPosition = new Vector3(0f, -0.1f, 0f);
-                        referance.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
-                    }
-                }
-                else if (!gripDown && menu != null)
-                {
-                    GameObject.Destroy(menu);
-                    menu = null;
-                    GameObject.Destroy(referance);
-                    referance = null;
-                }
-
-                if (gripDown && menu != null)
-                {
-                    menu.transform.position = __instance.leftHandTransform.position;
-                    menu.transform.rotation = __instance.leftHandTransform.rotation;
-                }
-
-                if (buttonsActive[0])
-                {
-                    bool primaryDown = false;
-                    bool secondaryDown = false;
-                    list = new List<InputDevice>();
-                    InputDevices.GetDevicesWithCharacteristics(UnityEngine.XR.InputDeviceCharacteristics.HeldInHand | UnityEngine.XR.InputDeviceCharacteristics.Right | UnityEngine.XR.InputDeviceCharacteristics.Controller, list);
-                    list[0].TryGetFeatureValue(CommonUsages.primaryButton, out primaryDown);
-                    list[0].TryGetFeatureValue(CommonUsages.secondaryButton, out secondaryDown);
-
-                    if (primaryDown)
-                    {
-                        __instance.transform.position += (__instance.headCollider.transform.forward * Time.deltaTime) * 12f;
-                        __instance.GetComponent<Rigidbody>().velocity = Vector3.zero;
-                        if (!flying)
-                        {
-                            flying = true;
-                        }
-                    }
-                    else if (flying)
-                    {
-                        __instance.GetComponent<Rigidbody>().velocity = (__instance.headCollider.transform.forward * Time.deltaTime) * 12f;
-                        flying = false;
+                        maxJumpSpeed = __instance.maxJumpSpeed;
                     }
 
-                    if (secondaryDown)
+                    List<InputDevice> list = new List<InputDevice>();
+                    InputDevices.GetDevicesWithCharacteristics(UnityEngine.XR.InputDeviceCharacteristics.HeldInHand | UnityEngine.XR.InputDeviceCharacteristics.Left | UnityEngine.XR.InputDeviceCharacteristics.Controller, list);
+                    list[0].TryGetFeatureValue(CommonUsages.gripButton, out gripDown);
+
+                    if (gripDown && menu == null)
                     {
-                        if (!gravityToggled && __instance.bodyCollider.attachedRigidbody.useGravity == true)
+                        Draw();
+                        if (referance == null)
                         {
-                            __instance.bodyCollider.attachedRigidbody.useGravity = false;
-                            gravityToggled = true;
+                            referance = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+                            GameObject.Destroy(referance.GetComponent<MeshRenderer>());
+                            referance.transform.parent = __instance.rightHandTransform;
+                            referance.transform.localPosition = new Vector3(0f, -0.1f, 0f);
+                            referance.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
                         }
-                        else if (!gravityToggled && __instance.bodyCollider.attachedRigidbody.useGravity == false)
+                    }
+                    else if (!gripDown && menu != null)
+                    {
+                        GameObject.Destroy(menu);
+                        menu = null;
+                        GameObject.Destroy(referance);
+                        referance = null;
+                    }
+
+                    if (gripDown && menu != null)
+                    {
+                        menu.transform.position = __instance.leftHandTransform.position;
+                        menu.transform.rotation = __instance.leftHandTransform.rotation;
+                    }
+
+                    if (buttonsActive[0] == true)
+                    {
+                        bool primaryDown = false;
+                        bool secondaryDown = false;
+                        list = new List<InputDevice>();
+                        InputDevices.GetDevicesWithCharacteristics(UnityEngine.XR.InputDeviceCharacteristics.HeldInHand | UnityEngine.XR.InputDeviceCharacteristics.Right | UnityEngine.XR.InputDeviceCharacteristics.Controller, list);
+                        list[0].TryGetFeatureValue(CommonUsages.primaryButton, out primaryDown);
+                        list[0].TryGetFeatureValue(CommonUsages.secondaryButton, out secondaryDown);
+
+                        if (primaryDown)
                         {
-                            __instance.bodyCollider.attachedRigidbody.useGravity = true;
-                            gravityToggled = true;
+                            __instance.transform.position += (__instance.headCollider.transform.forward * Time.deltaTime) * 12f;
+                            __instance.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                            if (!flying)
+                            {
+                                flying = true;
+                            }
                         }
+                        else if (flying)
+                        {
+                            __instance.GetComponent<Rigidbody>().velocity = (__instance.headCollider.transform.forward * Time.deltaTime) * 12f;
+                            flying = false;
+                        }
+
+                        if (secondaryDown)
+                        {
+                            if (!gravityToggled && __instance.bodyCollider.attachedRigidbody.useGravity == true)
+                            {
+                                __instance.bodyCollider.attachedRigidbody.useGravity = false;
+                                gravityToggled = true;
+                            }
+                            else if (!gravityToggled && __instance.bodyCollider.attachedRigidbody.useGravity == false)
+                            {
+                                __instance.bodyCollider.attachedRigidbody.useGravity = true;
+                                gravityToggled = true;
+                            }
+                        }
+                        else
+                        {
+                            gravityToggled = false;
+                        }
+                    }
+
+                    if (buttonsActive[1] == true)
+                    {
+                        bool flag = false;
+                        bool flag2 = false;
+                        list = new List<InputDevice>();
+                        InputDevices.GetDevices(list);
+                        InputDevices.GetDevicesWithCharacteristics(UnityEngine.XR.InputDeviceCharacteristics.HeldInHand | UnityEngine.XR.InputDeviceCharacteristics.Right | UnityEngine.XR.InputDeviceCharacteristics.Controller, list);
+                        list[0].TryGetFeatureValue(CommonUsages.triggerButton, out flag);
+                        list[0].TryGetFeatureValue(CommonUsages.gripButton, out flag2);
+                        if (flag2)
+                        {
+                            RaycastHit hitInfo;
+                            Physics.Raycast(__instance.rightHandTransform.position - __instance.rightHandTransform.up, -__instance.rightHandTransform.up, out hitInfo);
+                            if (pointer == null)
+                            {
+                                pointer = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+                                GameObject.Destroy(pointer.GetComponent<Rigidbody>());
+                                GameObject.Destroy(pointer.GetComponent<SphereCollider>());
+                                pointer.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
+                            }
+                            pointer.transform.position = hitInfo.point;
+
+                            Photon.Realtime.Player player;
+                            bool taggable = GorillaTagger.Instance.TryToTag(hitInfo, true, out player);
+                            if (flag && !taggable)
+                            {
+                                pointer.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
+                            }
+                            else if (!flag && taggable)
+                            {
+                                pointer.GetComponent<Renderer>().material.SetColor("_Color", Color.blue);
+                            }
+                            else if (flag && taggable)
+                            {
+                                pointer.GetComponent<Renderer>().material.SetColor("_Color", Color.green);
+                                foreach (var ply in PhotonNetwork.PlayerList)
+                                {
+                                    PhotonView.Get(GorillaTagManager.instance.GetComponent<GorillaGameManager>()).RPC("ReportTagRPC", RpcTarget.MasterClient, new object[]
+                                    {
+                    ply,
+                    player
+                                    });
+                                }
+                            }
+                        }
+                        else
+                        {
+                            GameObject.Destroy(pointer);
+                            pointer = null;
+                        }
+                    }
+
+                    if (buttonsActive[2] == true)
+                    {
+                        __instance.maxJumpSpeed = 999f;
+                        __instance.jumpMultiplier = 1.45f;
                     }
                     else
                     {
-                        gravityToggled = false;
+                        __instance.maxJumpSpeed = (float)maxJumpSpeed;
+                        __instance.jumpMultiplier = 1.1f;
                     }
-                }
 
-                if (buttonsActive[1])
-                {
-                    bool flag = false;
-                    bool flag2 = false;
-                    list = new List<InputDevice>();
-                    InputDevices.GetDevices(list);
-                    InputDevices.GetDevicesWithCharacteristics(UnityEngine.XR.InputDeviceCharacteristics.HeldInHand | UnityEngine.XR.InputDeviceCharacteristics.Right | UnityEngine.XR.InputDeviceCharacteristics.Controller, list);
-                    list[0].TryGetFeatureValue(CommonUsages.triggerButton, out flag);
-                    list[0].TryGetFeatureValue(CommonUsages.gripButton, out flag2);
-                    if (flag2)
+                    if (buttonsActive[3] == true)
                     {
-                        RaycastHit hitInfo;
-                        Physics.Raycast(__instance.rightHandTransform.position - __instance.rightHandTransform.up, -__instance.rightHandTransform.up, out hitInfo);
-                        if (pointer == null)
+                        if (btnCooldown == 0)
                         {
-                            pointer = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-                            GameObject.Destroy(pointer.GetComponent<Rigidbody>());
-                            GameObject.Destroy(pointer.GetComponent<SphereCollider>());
-                            pointer.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
-                        }
-                        pointer.transform.position = hitInfo.point;
-
-                        Photon.Realtime.Player player;
-                        bool taggable = GorillaTagger.Instance.TryToTag(hitInfo, true, out player);
-                        if (flag && !taggable)
-                        {
-                            pointer.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
-                        }
-                        else if (!flag && taggable)
-                        {
-                            pointer.GetComponent<Renderer>().material.SetColor("_Color", Color.blue);
-                        }
-                        else if (flag && taggable)
-                        {
-                            pointer.GetComponent<Renderer>().material.SetColor("_Color", Color.green);
-                            foreach (var ply in PhotonNetwork.PlayerList)
+                            btnCooldown = Time.frameCount + 30;
+                            foreach (var ply1 in PhotonNetwork.PlayerList)
                             {
-                                PhotonView.Get(GorillaTagManager.instance.GetComponent<GorillaGameManager>()).RPC("ReportTagRPC", RpcTarget.MasterClient, new object[]
+                                foreach (var ply2 in PhotonNetwork.PlayerList)
                                 {
-                        ply,
-                        player
-                                });
+                                    PhotonView.Get(GorillaTagManager.instance.GetComponent<GorillaGameManager>()).RPC("ReportTagRPC", RpcTarget.MasterClient, new object[]
+                                    {
+                        ply1,
+                        ply2
+                                    });
+                                }
                             }
+                            GameObject.Destroy(menu);
+                            menu = null;
+                            Draw();
                         }
                     }
-                    else
+
+                    if (buttonsActive[4] == true)
                     {
-                        GameObject.Destroy(pointer);
-                        pointer = null;
+                        __instance.disableMovement = false;
                     }
-                }
 
-                if (buttonsActive[2])
-                {
-                    __instance.maxJumpSpeed = 999f;
-                    __instance.jumpMultiplier = 1.45f;
-                }
-                else
-                {
-                    __instance.maxJumpSpeed = (float)maxJumpSpeed;
-                    __instance.jumpMultiplier = 1.1f;
-                }
-
-                if (buttonsActive[3] == true)
-                {
-                    if (btnCooldown == 0)
+                    if (btnCooldown > 0)
                     {
-                        btnCooldown = Time.frameCount + 30;
-                        foreach (var ply1 in PhotonNetwork.PlayerList)
+                        if (Time.frameCount > btnCooldown)
                         {
-                            foreach (var ply2 in PhotonNetwork.PlayerList)
-                            {
-                                PhotonView.Get(GorillaTagManager.instance.GetComponent<GorillaGameManager>()).RPC("ReportTagRPC", RpcTarget.MasterClient, new object[]
-                                {
-                            ply1,
-                            ply2
-                                });
-                            }
+                            btnCooldown = 0;
+                            buttonsActive[3] = false;
+                            GameObject.Destroy(menu);
+                            menu = null;
+                            Draw();
                         }
-                        GameObject.Destroy(menu);
-                        menu = null;
-                        Draw();
                     }
                 }
-
-                if (buttonsActive[4])
-                {
-                    __instance.disableMovement = false;
-                }
-
-                if (btnCooldown > 0)
-                {
-                    if (Time.frameCount > btnCooldown)
-                    {
-                        btnCooldown = 0;
-                        buttonsActive[3] = false;
-                        GameObject.Destroy(menu);
-                        menu = null;
-                        Draw();
-                    }
-                }
+            } 
+            catch (Exception e)
+            {
+                File.WriteAllText("monkemodmenu_error.log", e.ToString());
             }
         }
 
@@ -248,13 +253,17 @@ namespace WristMenu
                 }
             }
 
-            if (!buttonsActive[index])
+            if (buttonsActive[index] == false)
             {
                 newBtn.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
             }
-            else
+            else if (buttonsActive[index] == true)
             {
                 newBtn.GetComponent<Renderer>().material.SetColor("_Color", Color.green);
+            }
+            else
+            {
+                newBtn.GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
             }
 
             GameObject titleObj = new GameObject();
@@ -330,11 +339,15 @@ namespace WristMenu
                     break;
                 }
             }
-            buttonsActive[index] = !buttonsActive[index];
 
-            GameObject.Destroy(menu);
-            menu = null;
-            Draw();
+            if (buttonsActive[index] != null)
+            {
+                buttonsActive[index] = !buttonsActive[index];
+
+                GameObject.Destroy(menu);
+                menu = null;
+                Draw();
+            }
         }
     }
     
