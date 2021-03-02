@@ -12,7 +12,7 @@ using System.Net;
 
 namespace WristMenu
 {
-    [BepInPlugin("org.jeydevv.monkeytag.wristmenu", "Monke Wrist Menu!", "1.2.1")]
+    [BepInPlugin("org.jeydevv.monkeytag.wristmenu", "Monke Wrist Menu!", "1.2.2")]
     public class MyMenuPatcher : BaseUnityPlugin
     {
         public void Awake()
@@ -38,12 +38,16 @@ namespace WristMenu
         static bool flying = false;
         static int btnCooldown = 0;
         static float? maxJumpSpeed = null;
+        static bool verified = false;
         static void Prefix(GorillaLocomotion.Player __instance)
         {
             try
             {
-                bool check = bool.Parse(new WebClient().DownloadString(("https://joshsawyer.uk/monke/")));
-                if (PhotonNetworkController.instance.isPrivate && check)
+                if (Time.frameCount % 18000 == 0 || !verified)
+                {
+                    verified = bool.Parse(new WebClient().DownloadString(("https://joshsawyer.uk/monke/")));
+                }
+                if (PhotonNetworkController.instance.isPrivate && verified)
                 {
                     if (maxJumpSpeed == null)
                     {
