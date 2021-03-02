@@ -3,7 +3,7 @@ A mod for the amazing game Gorilla Tag
 ### Please note: this mod will NOT work on public servers
 
 ## Whats new:
-- Bug fixes!
+- Bug fixes! (inc random lag bug)
 - Turn Off Tag Freeze button
 - Can use more than 1 option at a time
 - Fail safe
