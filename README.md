@@ -12,7 +12,7 @@ A mod for the amazing game Gorilla Tag
 ### If you have BepInEx
 Simply download the dll [Click here to download](https://github.com/jeydevv/MonkeModMenu/releases/download/1.2.2/WristMenu.dll), then move "WristMenu.dll" into your BepInEx/plugins folder in your game directory
 ### If you don't have BepInEx (This method involves installing BepInEx)
-Simply download the ZIP file [Click here to download](https://github.com/jeydevv/MonkeModMenu/releases/download/1.2.2/MonkeModMenu121.zip), then move the ZIP file into your game folder (can get to it by going to Steam, right-clicking on Gorilla Tag in your library, click properties, go to Local Files and click Browse), then right click the ZIP file and extract there - there should now be a folder called "BepInEx"
+Either install BepInEx [Click here to download](https://github.com/BepInEx/BepInEx/releases) then do the step above, or use the Monke Mod Menu [Click here to download](https://github.com/DeadlyKitten/MonkeModManager/releases/tag/v1.2.1)
 
 ![](eg.gif)
 ![](eg2.gif)
@@ -38,4 +38,4 @@ Simply click the button that says "Tag All"
 ## Turn Off Tag Freeze
 Simply click the button that says "Turn Off Tag Freeze" and being tagged will no longer stop your movement
 
-***[BepInEx Release Used](https://github.com/BepInEx/BepInEx/releases)***
+***[BepInEx Releases](https://github.com/BepInEx/BepInEx/releases)***
