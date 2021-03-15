@@ -47,6 +47,4 @@ Simply click the button that says "Turn Off Tag Freeze" and being tagged will no
 ## Beacon
 Simply click the button that says "Toggle Beacon" and you will see a coloured pillar coming from every gorilla
 
-![](https://media.giphy.com/media/BfJzN1ZRP4unxha69j/giphy.gif)
-
-***[BepInEx Releases](https://github.com/BepInEx/BepInEx/releases)***
+![](https://media.giphy.com/media/RktqgGfQbzIYekMgD8/giphy.gif)
