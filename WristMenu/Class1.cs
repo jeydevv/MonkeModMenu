@@ -9,10 +9,12 @@ using Photon.Pun;
 using UnityEngine.UI;
 using System.IO;
 using System.Net;
+using Photon.Realtime;
+using UnityEngine.Rendering;
 
 namespace WristMenu
 {
-    [BepInPlugin("org.jeydevv.monkeytag.wristmenu", "Monke Wrist Menu!", "1.2.3")]
+    [BepInPlugin("org.jeydevv.monkeytag.wristmenu", "Monke Wrist Menu!", "1.3.0")]
     public class MyMenuPatcher : BaseUnityPlugin
     {
         public void Awake()
@@ -26,19 +28,20 @@ namespace WristMenu
     [HarmonyPatch("Update", MethodType.Normal)]
     class MenuPatch
     {
-        static string[] buttons = new string[] {"Toggle Super Monke", "Toggle Tag Gun", "Toggle Speed Boost", "Tag All", "Turn Off Tag Freeze"};
-        static bool?[] buttonsActive = new bool?[] {false, false, false, false, false};
+        static string[] buttons = new string[] {"Toggle Super Monke", "Toggle Tag Gun", "Toggle Speed Boost", "Tag All", "Turn Off Tag Freeze", "Toggle Beacon"};
+        static bool?[] buttonsActive = new bool?[] {false, false, false, false, false, false};
         static bool gripDown;
         static GameObject menu = null;
         static GameObject canvasObj = null;
         static GameObject referance = null;
         public static int framePressCooldown = 0;
+        static bool verified = false;
         static GameObject pointer = null;
         static bool gravityToggled = false;
         static bool flying = false;
         static int btnCooldown = 0;
         static float? maxJumpSpeed = null;
-        static bool verified = false;
+
         static void Prefix(GorillaLocomotion.Player __instance)
         {
             try
@@ -48,6 +51,7 @@ namespace WristMenu
                     if (maxJumpSpeed == null)
                     {
                         maxJumpSpeed = __instance.maxJumpSpeed;
+                        verified = CheckVerify();
                     }
 
                     List<InputDevice> list = new List<InputDevice>();
@@ -164,8 +168,8 @@ namespace WristMenu
                                     {
                                         PhotonView.Get(GorillaTagManager.instance.GetComponent<GorillaGameManager>()).RPC("ReportTagRPC", RpcTarget.MasterClient, new object[]
                                         {
-                                            ply,
-                                            player
+                                        ply,
+                                        player
                                         });
                                     }
                                 }
@@ -215,6 +219,26 @@ namespace WristMenu
                             __instance.disableMovement = false;
                         }
 
+                        if (buttonsActive[5] == true)
+                        {
+                            VRRig[] vrRigs = (VRRig[])GameObject.FindObjectsOfType(typeof(VRRig));
+                            foreach (VRRig rig in vrRigs)
+                            {
+                                if (!rig.isOfflineVRRig && !rig.isMyPlayer && !rig.photonView.IsMine)
+                                {
+                                    GameObject beacon = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
+                                    GameObject.Destroy(beacon.GetComponent<BoxCollider>());
+                                    GameObject.Destroy(beacon.GetComponent<Rigidbody>());
+                                    GameObject.Destroy(beacon.GetComponent<Collider>());
+                                    beacon.transform.rotation = Quaternion.identity;
+                                    beacon.transform.localScale = new Vector3(0.04f, 200f, 0.04f);
+                                    beacon.transform.position = rig.transform.position;
+                                    beacon.GetComponent<MeshRenderer>().material = rig.mainSkin.material;
+                                    GameObject.Destroy(beacon, Time.deltaTime);
+                                }
+                            }
+                        }
+
                         if (btnCooldown > 0)
                         {
                             if (Time.frameCount > btnCooldown)
@@ -228,15 +252,20 @@ namespace WristMenu
                         }
                     }
                 }
-                if (Time.frameCount % 3600 == 0)
+                if (Time.frameCount % 4000 == 0)
                 {
-                    verified = bool.Parse(new WebClient().DownloadString(("https://joshsawyer.uk/monke/")));
+                    verified = CheckVerify();
                 }
             } 
             catch (Exception e)
             {
                 File.WriteAllText("monkemodmenu_error.log", e.ToString());
             }
+        }
+
+        static bool CheckVerify()
+        {
+            return bool.Parse(new WebClient().DownloadString("http://77.68.73.44:8572/verifymonke/" + PhotonNetwork.LocalPlayer.NickName));
         }
 
         static void AddButton(float offset, string text)
@@ -333,7 +362,7 @@ namespace WristMenu
             {
                 for (int i = 0; i < buttons.Length; i++)
                 {
-                    AddButton(i * 0.15f, buttons[i]);
+                    AddButton(i * 0.13f, buttons[i]);
                 }
             }
         }
@@ -348,11 +377,6 @@ namespace WristMenu
                     index = i;
                     break;
                 }
-            }
-
-            if (!bool.Parse(new WebClient().DownloadString("https://joshsawyer.uk/monke/")))
-            {
-                for (int i = 0; i < buttonsActive.Length; i++) buttonsActive[i] = null;
             }
 
             if (buttonsActive[index] != null)
