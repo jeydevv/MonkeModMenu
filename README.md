@@ -22,29 +22,29 @@ To fly, hold the "B" button on your primary touch controller (While Super Monke 
 ### Anti-Gravity
 To toggle your gravity, tap "A" on your primary touch controller (While Super Monke V2 is toggled on)
 
-![](gif/antigrav.gif)
+![](gifs/antigrav.gif)
 
 ## Tag Gun
 Hold grip on your right controller, line up the orb and pull trigger (While Tag Gun is toggled on)
 
-![](gif/taggun.gif)
+![](gifs/taggun.gif)
 
 ## Speed Boost
 Just jump around as normal while Speed Boost is toggled on
 
-![](gif/speed.gif)
+![](gifs/speed.gif)
 
 ## Tag All
 Simply click the button that says "Tag All"
 
-![](gif/tagall.gif)
+![](gifs/tagall.gif)
 
 ## Turn Off Tag Freeze
 Simply click the button that says "Turn Off Tag Freeze" and being tagged will no longer stop your movement
 
-![](gif/nofreeze.gif)
+![](gifs/nofreeze.gif)
 
 ## Beacon
 Simply click the button that says "Toggle Beacon" and you will see a coloured pillar coming from every gorilla
 
-![](gif/beacon.gif)
+![](gifs/beacon.gif)
