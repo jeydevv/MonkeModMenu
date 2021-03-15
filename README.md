@@ -13,7 +13,7 @@ Either install BepInEx [Click here to download](https://github.com/BepInEx/BepIn
 
 ## To use
 Hold your left hand grip in order to trigger the menu
-
+![](https://media.giphy.com/media/RktqgGfQbzIYekMgD8/giphy.gif)
 ### Flying
 To fly, hold the "B" button on your primary touch controller (While Super Monke V2 is toggled on)
 
