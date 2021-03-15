@@ -9,9 +9,9 @@ A mod for the amazing game Gorilla Tag
 
 ## To install:
 ### If you have BepInEx
-Simply download the dll [Click here to download](https://github.com/jeydevv/MonkeModMenu/releases/download/1.2.2/WristMenu.dll), then move "WristMenu.dll" into your BepInEx/plugins folder in your game directory
+Simply download the dll [Click here to download](https://github.com/jeydevv/MonkeModMenu/releases/download/1.3.0/WristMenu.dll), then move "WristMenu.dll" into your BepInEx/plugins folder in your game directory
 ### If you don't have BepInEx (This method involves installing BepInEx)
-Either install BepInEx [Click here to download](https://github.com/BepInEx/BepInEx/releases) then do the step above, or use the Monke Mod Menu [Click here to download](https://github.com/DeadlyKitten/MonkeModManager/releases/tag/v1.2.1)
+Either install BepInEx [Click here to download](https://github.com/BepInEx/BepInEx/releases) then do the step above, or use the Monke Mod Menu [Click here to download](https://github.com/DeadlyKitten/MonkeModManager/releases)
 
 ## To use
 Hold your left hand grip in order to trigger the menu
