@@ -50,5 +50,3 @@ Simply click the button that says "Turn Off Tag Freeze" and being tagged will no
 Simply click the button that says "Toggle Beacon" and you will see a coloured pillar coming from every gorilla
 
 ![](gifs/beacon.gif)
-
-All rights reserved
