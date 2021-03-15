@@ -1,6 +1,6 @@
 # Monke Mod Menu
 A mod for the amazing game Gorilla Tag
-### Please note: this mod will NOT work on public servers
+### Please note: this mod will NOT work on public servers and is not intended to
 
 ## Whats new:
 - Bug fixes!
@@ -48,3 +48,5 @@ Simply click the button that says "Turn Off Tag Freeze" and being tagged will no
 Simply click the button that says "Toggle Beacon" and you will see a coloured pillar coming from every gorilla
 
 ![](gifs/beacon.gif)
+
+All rights reserved
