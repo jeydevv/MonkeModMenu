@@ -3,7 +3,9 @@ A mod for the amazing game Gorilla Tag
 ### Please note: this mod will NOT work on public servers and is not intended to
 
 ## Whats new:
-- Bug fixes!
+- New Beacon button!
+- Optimisation / Bug Fixes!
+- Player count tracking!
 
 ## To install:
 ### If you have BepInEx
