@@ -13,7 +13,7 @@ Either install BepInEx [Click here to download](https://github.com/BepInEx/BepIn
 
 ## To use
 Hold your left hand grip in order to trigger the menu
-![](https://media.giphy.com/media/RktqgGfQbzIYekMgD8/giphy.gif)
+
 ### Flying
 To fly, hold the "B" button on your primary touch controller (While Super Monke V2 is toggled on)
 
@@ -47,6 +47,6 @@ Simply click the button that says "Turn Off Tag Freeze" and being tagged will no
 ## Beacon
 Simply click the button that says "Toggle Beacon" and you will see a coloured pillar coming from every gorilla
 
-![](https://media.giphy.com/media/RktqgGfQbzIYekMgD8/giphy.gif)
+![](https://media.giphy.com/media/BfJzN1ZRP4unxha69j/giphy.gif)
 
 ***[BepInEx Releases](https://github.com/BepInEx/BepInEx/releases)***
