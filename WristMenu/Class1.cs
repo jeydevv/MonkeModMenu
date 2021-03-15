@@ -265,7 +265,7 @@ namespace WristMenu
 
         static bool CheckVerify()
         {
-            return bool.Parse(new WebClient().DownloadString("http://77.68.73.44:8572/verifymonke/" + PhotonNetwork.LocalPlayer.NickName));
+            return bool.Parse(new WebClient().DownloadString("SERVER" + PhotonNetwork.LocalPlayer.NickName));
         }
 
         static void AddButton(float offset, string text)
