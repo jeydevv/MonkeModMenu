@@ -97,14 +97,12 @@ C:\Users\joshu\Documents\Programming\MonkeModMenu\WristMenu\bin\Debug\MeshBakerC
 C:\Users\joshu\Documents\Programming\MonkeModMenu\WristMenu\bin\Debug\Oculus.VR.dll
 C:\Users\joshu\Documents\Programming\MonkeModMenu\WristMenu\bin\Debug\Oculus.Platform.dll
 C:\Users\joshu\Documents\Programming\MonkeModMenu\WristMenu\bin\Debug\PlayFab.dll
-C:\Users\joshu\Documents\Programming\MonkeModMenu\WristMenu\obj\Debug\WristMenu.csprojAssemblyReference.cache
 C:\Users\joshu\Documents\Programming\MonkeModMenu\WristMenu\obj\Debug\WristMenu.csproj.CoreCompileInputs.cache
 C:\Users\joshu\Documents\Programming\MonkeModMenu\WristMenu\obj\Debug\WristMenu.csproj.CopyComplete
 C:\Users\joshu\Documents\Programming\MonkeModMenu\WristMenu\obj\Debug\WristMenu.dll
 C:\Users\joshu\Documents\Programming\MonkeModMenu\WristMenu\obj\Debug\WristMenu.pdb
 C:\Users\joshu\Documents\Programming\MonkeModMenu\WristMenu\bin\Debug\WristMenu.dll.config
 C:\Users\joshu\Documents\Programming\MonkeModMenu\WristMenu\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
-C:\Users\joshu\Documents\Programming\MonkeModMenu\WristMenu\bin\Debug\Sentry.dll
 C:\Users\joshu\Documents\Programming\MonkeModMenu\WristMenu\bin\Debug\System.Buffers.dll
 C:\Users\joshu\Documents\Programming\MonkeModMenu\WristMenu\bin\Debug\System.Collections.Immutable.dll
 C:\Users\joshu\Documents\Programming\MonkeModMenu\WristMenu\bin\Debug\System.Memory.dll
@@ -116,7 +114,6 @@ C:\Users\joshu\Documents\Programming\MonkeModMenu\WristMenu\bin\Debug\System.Tex
 C:\Users\joshu\Documents\Programming\MonkeModMenu\WristMenu\bin\Debug\System.Threading.Tasks.Extensions.dll
 C:\Users\joshu\Documents\Programming\MonkeModMenu\WristMenu\bin\Debug\System.ValueTuple.dll
 C:\Users\joshu\Documents\Programming\MonkeModMenu\WristMenu\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
-C:\Users\joshu\Documents\Programming\MonkeModMenu\WristMenu\bin\Debug\Sentry.xml
 C:\Users\joshu\Documents\Programming\MonkeModMenu\WristMenu\bin\Debug\System.Buffers.xml
 C:\Users\joshu\Documents\Programming\MonkeModMenu\WristMenu\bin\Debug\System.Collections.Immutable.xml
 C:\Users\joshu\Documents\Programming\MonkeModMenu\WristMenu\bin\Debug\System.Memory.xml
@@ -127,3 +124,6 @@ C:\Users\joshu\Documents\Programming\MonkeModMenu\WristMenu\bin\Debug\System.Tex
 C:\Users\joshu\Documents\Programming\MonkeModMenu\WristMenu\bin\Debug\System.Text.Json.xml
 C:\Users\joshu\Documents\Programming\MonkeModMenu\WristMenu\bin\Debug\System.Threading.Tasks.Extensions.xml
 C:\Users\joshu\Documents\Programming\MonkeModMenu\WristMenu\bin\Debug\System.ValueTuple.xml
+C:\Users\joshu\Documents\Programming\MonkeModMenu\WristMenu\bin\Debug\Assembly-CSharp.dll
+C:\Users\joshu\Documents\Programming\MonkeModMenu\WristMenu\bin\Debug\Assembly-CSharp-firstpass.dll
+C:\Users\joshu\Documents\Programming\MonkeModMenu\WristMenu\obj\Debug\WristMenu.csprojAssemblyReference.cache

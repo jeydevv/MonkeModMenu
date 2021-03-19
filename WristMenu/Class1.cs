@@ -46,7 +46,7 @@ namespace WristMenu
         {
             try
             {
-                if (PhotonNetworkController.instance.isPrivate && !PhotonNetwork.CurrentRoom.IsVisible || !PhotonNetwork.InRoom)
+                if (!PhotonNetwork.CurrentRoom.IsVisible || !PhotonNetwork.InRoom)
                 {
                     if (maxJumpSpeed == null)
                     {
@@ -164,14 +164,10 @@ namespace WristMenu
                                 else if (flag && taggable)
                                 {
                                     pointer.GetComponent<Renderer>().material.SetColor("_Color", Color.green);
-                                    foreach (var ply in PhotonNetwork.PlayerList)
+                                    PhotonView.Get(GorillaTagManager.instance.GetComponent<GorillaGameManager>()).RPC("ReportTagRPC", RpcTarget.MasterClient, new object[]
                                     {
-                                        PhotonView.Get(GorillaTagManager.instance.GetComponent<GorillaGameManager>()).RPC("ReportTagRPC", RpcTarget.MasterClient, new object[]
-                                        {
-                                        ply,
                                         player
-                                        });
-                                    }
+                                    });
                                 }
                             }
                             else
@@ -197,16 +193,12 @@ namespace WristMenu
                             if (btnCooldown == 0)
                             {
                                 btnCooldown = Time.frameCount + 30;
-                                foreach (var ply1 in PhotonNetwork.PlayerList)
+                                foreach (var player in PhotonNetwork.PlayerList)
                                 {
-                                    foreach (var ply2 in PhotonNetwork.PlayerList)
+                                    PhotonView.Get(GorillaTagManager.instance.GetComponent<GorillaGameManager>()).RPC("ReportTagRPC", RpcTarget.MasterClient, new object[]
                                     {
-                                        PhotonView.Get(GorillaTagManager.instance.GetComponent<GorillaGameManager>()).RPC("ReportTagRPC", RpcTarget.MasterClient, new object[]
-                                        {
-                                            ply1,
-                                            ply2
-                                        });
-                                    }
+                                        player
+                                    });
                                 }
                                 GameObject.Destroy(menu);
                                 menu = null;
