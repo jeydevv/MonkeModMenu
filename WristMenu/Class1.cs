@@ -14,7 +14,7 @@ using UnityEngine.Rendering;
 
 namespace WristMenu
 {
-    [BepInPlugin("org.jeydevv.monkeytag.wristmenu", "Monke Wrist Menu!", "1.3.0")]
+    [BepInPlugin("org.jeydevv.monkeytag.wristmenu", "Monke Wrist Menu!", "1.3.1")]
     public class MyMenuPatcher : BaseUnityPlugin
     {
         public void Awake()
