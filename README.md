@@ -1,8 +1,9 @@
 # Monke Mod Menu
 A mod for the game Gorilla Tag
-### Please note: this mod will NOT work on public servers and is not intended to
-### This mod verifies through a server and your username may be temporarily stored
+### Please note: 
 ### This mod is no longer being developed or maintained
+### This mod will NOT work on public servers and is not intended to
+### This mod verifies through a server and your username may be temporarily stored
 
 ## Whats new:
 - New Beacon button!
