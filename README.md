@@ -1,5 +1,5 @@
 # Monke Mod Menu
-A mod for the amazing game Gorilla Tag
+A mod for the game Gorilla Tag (no longer in development)
 ### Please note: this mod will NOT work on public servers and is not intended to
 ### Extra note: this mod verifies through a server and your username may be temporarily stored
 
